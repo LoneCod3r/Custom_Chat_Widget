@@ -4,6 +4,8 @@ A self-hosted chat widget — no third-party service, no volume limits, no fees.
 
 **[`chat-widget.html`](chat-widget.html) is the project.** One self-contained file — copy its contents into any page, right before `</body>`, and it works standalone. No build step, no dependencies.
 
+Need a smaller footprint? [`chat-widget.min.html`](chat-widget.min.html) is the same widget with the CSS minified and comments/indentation stripped from the JS (~20% smaller, ~14KB vs ~17KB). Functionally identical — same file, same behavior.
+
 **[`/demo`](demo/index.html) is not part of the widget.** It's a sample business page showing the widget in context — screenshots below are taken from it.
 
 ---
