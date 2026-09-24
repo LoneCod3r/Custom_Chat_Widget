@@ -433,6 +433,7 @@
 
         body.appendChild(form);
         scrollToBottom();
+        backButton(showMainMenu);
       });
     }
 

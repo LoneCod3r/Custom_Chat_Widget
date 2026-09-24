@@ -244,6 +244,18 @@ submitBtn.textContent = "Send Message";
 });
 body.appendChild(form);
 scrollToBottom();
+var backWrap = document.createElement("div");
+backWrap.className = "vc-options";
+var backBtn = document.createElement("button");
+backBtn.className = "vc-option-btn";
+backBtn.textContent = "Back to Menu";
+backBtn.addEventListener("click", function () {
+addUserMessage("Back to Menu");
+showMainMenu();
+});
+backWrap.appendChild(backBtn);
+body.appendChild(backWrap);
+scrollToBottom();
 });
 }
 function showThankYou() {
