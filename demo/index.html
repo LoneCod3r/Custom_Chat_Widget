@@ -1085,23 +1085,23 @@
     .lead-form button { width: 100%; }
   }
 
-#vc-bubble{position:fixed;bottom:24px;right:24px;width:62px;height:62px;border-radius:50%;background:#3d5fd1;box-shadow:0 10px 28px rgba(79,127,255,0.4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2147483000;transition:transform 0.2s ease,background 0.2s ease;box-sizing:border-box;line-height:normal;margin:0;padding:0;font:inherit;-webkit-appearance:none;appearance:none}
-#vc-bubble:hover{background:#33509e;transform:translateY(-2px) scale(1.04)}
+#vc-bubble{position:fixed !important;bottom:24px !important;right:24px !important;width:62px !important;height:62px !important;border-radius:50% !important;background:#3d5fd1 !important;box-shadow:0 10px 28px rgba(79,127,255,0.4) !important;border:none !important;cursor:pointer !important;display:flex !important;align-items:center !important;justify-content:center !important;z-index:2147483000 !important;transition:transform 0.2s ease,background 0.2s ease;box-sizing:border-box !important;line-height:normal !important;margin:0 !important;padding:0 !important;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif !important;-webkit-appearance:none !important;appearance:none !important}
+#vc-bubble:hover{background:#33509e !important;transform:translateY(-2px) scale(1.04)}
 #vc-bubble:focus-visible,.vc-header-close:focus-visible,.vc-option-btn:focus-visible,.vc-faq-q:focus-visible,.vc-submit:focus-visible{outline:2px solid var(--blue-bright);outline-offset:2px}
-#vc-bubble svg{width:26px;height:26px;fill:var(--white);pointer-events:none}
+#vc-bubble svg{width:26px !important;height:26px !important;fill:var(--white) !important;pointer-events:none}
 #vc-bubble .vc-close-icon{display:none}
 #vc-bubble.vc-open .vc-chat-icon{display:none}
 #vc-bubble.vc-open .vc-close-icon{display:block}
-#vc-window{position:fixed;bottom:100px;right:24px;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 140px);background:var(--surface);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.55);border:1px solid var(--border-strong);display:flex;flex-direction:column;overflow:hidden;z-index:2147482999;opacity:0;transform:translateY(16px) scale(0.98);pointer-events:none;transition:opacity 0.22s ease,transform 0.22s ease;box-sizing:border-box}
+#vc-window{position:fixed;bottom:100px;right:24px;width:360px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 140px);background:var(--surface);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.55);border:1px solid var(--border-strong) !important;display:flex;flex-direction:column;overflow:hidden;z-index:2147482999;opacity:0;transform:translateY(16px) scale(0.98);pointer-events:none;transition:opacity 0.22s ease,transform 0.22s ease;box-sizing:border-box}
 #vc-window *,#vc-window *::before,#vc-window *::after{box-sizing:border-box}
 #vc-window:focus{outline:none}
 #vc-window.vc-visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .vc-header{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .vc-header-info{display:flex;align-items:center;gap:10px}
-.vc-header h4{font-size:0.98rem;font-weight:700;margin:0;color:var(--white);text-transform:none}
+.vc-header h4{font-size:0.98rem !important;font-weight:700;margin:0;color:var(--white) !important;text-transform:none !important}
 .vc-header .vc-status{font-size:0.76rem;opacity:0.8;display:flex;align-items:center;gap:5px;color:var(--white)}
 .vc-status-dot{width:7px;height:7px;border-radius:50%;background:#4f8bff;display:inline-block}
-.vc-header-close{background:rgba(255,255,255,0.12);border:none;color:var(--white);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background 0.2s ease;margin:0;padding:0;-webkit-appearance:none;appearance:none}
+.vc-header-close{background:rgba(255,255,255,0.12) !important;border:none;color:var(--white) !important;width:28px !important;height:28px !important;border-radius:6px;cursor:pointer;font-size:1rem;line-height:1;display:flex !important;align-items:center;justify-content:center;transition:background 0.2s ease;margin:0;padding:0;-webkit-appearance:none;appearance:none}
 .vc-header-close:hover{background:rgba(255,255,255,0.25)}
 .vc-body{flex:1;overflow-y:auto;padding:18px;background:var(--bg-alt);display:flex;flex-direction:column;gap:12px}
 .vc-body::-webkit-scrollbar{width:6px}
@@ -1112,25 +1112,25 @@
 to{opacity:1;transform:translateY(0)}
 }
 .vc-options{display:flex;flex-direction:column;gap:8px;align-self:stretch;margin:0;padding:0;list-style:none}
-.vc-option-btn{background:var(--surface-2);border:1.5px solid var(--border-strong);color:var(--text-dark);padding:11px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;text-align:left;cursor:pointer;transition:background 0.18s ease,color 0.18s ease,transform 0.18s ease,border-color 0.18s ease;font-family:inherit;width:100%;display:block;margin:0;-webkit-appearance:none;appearance:none}
+.vc-option-btn{background:var(--surface-2) !important;border:1.5px solid var(--border-strong);color:var(--text-dark) !important;padding:11px 14px !important;border-radius:8px;font-size:0.88rem;font-weight:600;text-align:left;cursor:pointer;transition:background 0.18s ease,color 0.18s ease,transform 0.18s ease,border-color 0.18s ease;font-family:inherit;width:100%;display:block !important;margin:0;-webkit-appearance:none;appearance:none}
 .vc-option-btn:hover{background:#3d5fd1;border-color:#3d5fd1;color:var(--white);transform:translateY(-1px)}
 .vc-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;align-self:stretch}
-.vc-faq-q{position:relative;padding:11px 34px 11px 14px;font-size:0.88rem;font-weight:600;cursor:pointer;color:var(--text-dark);background:transparent;border:none;text-align:left;width:100%;display:block;font-family:inherit;margin:0;-webkit-appearance:none;appearance:none}
+.vc-faq-q{position:relative;padding:11px 34px 11px 14px !important;font-size:0.88rem;font-weight:600;cursor:pointer;color:var(--text-dark) !important;background:transparent;border:none;text-align:left;width:100%;display:block !important;font-family:inherit;margin:0;-webkit-appearance:none;appearance:none}
 .vc-faq-q::after{content:"+";position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--blue);font-weight:700;font-size:1.1rem;transition:transform 0.2s ease}
 .vc-faq-item.vc-open .vc-faq-q::after{transform:translateY(-50%) rotate(45deg)}
 .vc-faq-a{max-height:0;overflow:hidden;font-size:0.85rem;color:var(--text-muted);padding:0 14px;transition:max-height 0.25s ease,padding 0.25s ease;margin:0}
 .vc-faq-item.vc-open .vc-faq-a{max-height:160px;padding:0 14px 12px}
-.vc-form{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:16px;align-self:stretch;display:flex;flex-direction:column;gap:10px;margin:0}
+.vc-form{background:var(--surface-2) !important;border:1px solid var(--border);border-radius:12px;padding:16px;align-self:stretch;display:flex !important;flex-direction:column;gap:10px;margin:0}
 .vc-form label{font-size:0.8rem;font-weight:600;color:var(--text-dark)}
-.vc-form input,.vc-form textarea{width:100%;padding:10px 12px;border:1px solid var(--border-strong);border-radius:8px;font-family:inherit;font-size:0.88rem;resize:vertical;background:var(--bg-alt);color:var(--text-dark);box-sizing:border-box;line-height:normal;appearance:none;-webkit-appearance:none}
+.vc-form input,.vc-form textarea{width:100% !important;padding:10px 12px !important;border:1px solid var(--border-strong) !important;border-radius:8px !important;font-family:inherit !important;font-size:0.88rem !important;resize:vertical;background:var(--bg-alt) !important;color:var(--text-dark) !important;box-sizing:border-box !important;line-height:normal !important;appearance:none;-webkit-appearance:none}
 .vc-form input:focus,.vc-form textarea:focus{outline:none;border-color:var(--blue)}
-.vc-form .vc-submit{margin-top:4px;background:#3d5fd1;color:var(--white);border:none;padding:12px;border-radius:8px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:background 0.2s ease;font-family:inherit;width:100%;-webkit-appearance:none;appearance:none}
-.vc-form .vc-submit:hover{background:#33509e}
+.vc-form .vc-submit{margin-top:4px;background:#3d5fd1 !important;color:var(--white) !important;border:none;padding:12px !important;border-radius:8px;font-weight:700;font-size:0.9rem;cursor:pointer;transition:background 0.2s ease;font-family:inherit;width:100%;display:block;-webkit-appearance:none;appearance:none}
+.vc-form .vc-submit:hover{background:#33509e !important}
 .vc-form .vc-submit:disabled,.vc-form .vc-submit[aria-disabled="true"]{opacity:0.6;cursor:not-allowed}
 .vc-form .vc-error{color:#ff8a8a;font-size:0.78rem;display:none}
 .vc-thankyou{align-self:stretch;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:26px 18px;text-align:center}
 .vc-thankyou .vc-check{width:48px;height:48px;border-radius:8px;background:var(--blue-light);color:var(--blue-bright);font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-.vc-thankyou h4{font-size:1rem;margin-bottom:6px;color:var(--white);text-transform:none;font-weight:700}
+.vc-thankyou h4{font-size:1rem !important;margin-bottom:6px;color:var(--white) !important;text-transform:none !important;font-weight:700}
 .vc-thankyou p{font-size:0.85rem;color:var(--text-muted)}
 .vc-typing{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border);padding:12px 16px;border-radius:10px 10px 10px 2px;display:flex;gap:4px;align-items:center}
 .vc-typing span{width:6px;height:6px;border-radius:50%;background:var(--text-muted);opacity:0.5;animation:vc-blink 1.2s infinite ease-in-out}
@@ -1470,7 +1470,10 @@ to{opacity:1;transform:translateY(0)}
     }
 
     function clearOptions() {
+      var active = document.activeElement;
+      var losingFocus = active && win.contains(active) && active !== win;
       body.querySelectorAll(".vc-options, .vc-form, .vc-thankyou").forEach(function (n) {
+        if (losingFocus && n.contains(active)) win.focus();
         n.remove();
       });
     }

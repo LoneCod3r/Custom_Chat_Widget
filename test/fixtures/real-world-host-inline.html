@@ -1,3 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riverstone Plumbing (inline snippet install, as README Step 2 instructs)</title>
+<style>
+  /* ---- Realistic third-party site CSS, deliberately messy, as requested ---- */
+  * {
+    box-sizing: content-box;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    all: unset;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: red;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  input,
+  textarea {
+    border: 3px solid blue;
+    padding: 20px;
+  }
+
+  div {
+    box-sizing: content-box;
+  }
+
+  * {
+    line-height: 2;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a {
+    color: green;
+    text-decoration: underline;
+  }
+
+  /* ---- Additional realistic extras that commonly reveal compatibility gaps ---- */
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: #222;
+  }
+  .site-header a { color: #fff; }
+  .site-nav a { margin-left: 24px; font-weight: bold; }
+  .hero {
+    padding: 80px 32px;
+    background: linear-gradient(120deg, #ffe08a, #ff9a76);
+    text-align: center;
+  }
+  .cards { display: flex; gap: 24px; padding: 48px 32px; flex-wrap: wrap; }
+  .card { flex: 1 1 240px; border: 2px solid #999; padding: 24px; border-radius: 4px; }
+  .site-footer { background: #111; color: #eee; padding: 32px; margin-top: 64px; }
+  .quote-form { max-width: 480px; margin: 48px auto; padding: 24px; border: 1px solid #ccc; }
+  .quote-form label { display: block; margin-top: 12px; font-weight: bold; }
+  .filler-section { padding: 48px 32px; }
+  /* Very common global rule that catches naive fixed-position widgets off guard */
+  * { transform-style: flat; }
+  section { position: relative; }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="#top"><strong>Riverstone Plumbing &amp; Heating</strong></a>
+    <nav class="site-nav">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Reliable Plumbing, Same-Day Service</h1>
+    <p>Serving the Riverstone valley for over 20 years. Licensed, insured, and always on time.</p>
+    <button id="host-cta-btn" type="button">Get a Free Quote</button>
+  </section>
+
+  <section class="cards" id="services">
+    <div class="card">
+      <h3>Emergency Repairs</h3>
+      <p>Burst pipe at 2am? We answer the phone every day of the year.</p>
+    </div>
+    <div class="card">
+      <h3>Water Heater Install</h3>
+      <p>Tank and tankless installs, same-week scheduling available.</p>
+    </div>
+    <div class="card">
+      <h3>Drain Cleaning</h3>
+      <p>Camera inspection included with every drain cleaning visit.</p>
+    </div>
+  </section>
+
+  <section class="quote-form" id="about">
+    <h2>Request a Callback</h2>
+    <form id="host-quote-form">
+      <label for="host-name">Name</label>
+      <input id="host-name" name="host-name" type="text">
+      <label for="host-phone">Phone</label>
+      <input id="host-phone" name="host-phone" type="tel">
+      <label for="host-details">Job details</label>
+      <textarea id="host-details" name="host-details" rows="4"></textarea>
+      <button id="host-submit-btn" type="submit">Request Callback</button>
+      <p id="host-form-result" role="status"></p>
+    </form>
+  </section>
+
+  <section class="filler-section">
+    <h2>Why choose Riverstone</h2>
+    <p>Paragraph one of long scrolling content to give the page real height so scroll-related widget behavior can be tested realistically. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Paragraph two. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+    <p>Paragraph three. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Paragraph four. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p>Paragraph five. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+
+  <section class="filler-section">
+    <h2>Service Area</h2>
+    <p>Paragraph six. Another block of realistic filler content, repeated to push total page height well past a typical viewport so vertical scroll behavior is meaningfully testable.</p>
+    <p>Paragraph seven. More filler content describing the towns and neighborhoods served by this fictional plumbing company.</p>
+    <p>Paragraph eight. Even more filler content, continuing to add scrollable height to the document.</p>
+    <p>Paragraph nine. Filler content near the bottom of the page, just above the footer.</p>
+  </section>
+
+  <footer class="site-footer" id="contact">
+    <h4>Contact Us</h4>
+    <p>555 River Road, Riverstone. <a href="tel:+15555550123">(555) 555-0123</a></p>
+  </footer>
+
+  <script>
+    // Realistic host JS: a click handler and a fake form submit handler,
+    // used to verify the widget doesn't interfere with host page scripting.
+    window.hostCtaClicks = 0;
+    document.getElementById("host-cta-btn").addEventListener("click", function () {
+      window.hostCtaClicks++;
+    });
+    document.getElementById("host-quote-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      window.hostFormSubmits = (window.hostFormSubmits || 0) + 1;
+      document.getElementById("host-form-result").textContent = "Thanks, we'll call you back.";
+    });
+  </script>
+
+  <!-- Custom Chat Widget (inline snippet, exactly as README Step 2 instructs) -->
 <!--
   Custom Chat Widget — standalone snippet
   Paste this whole file's contents right before </body> on any page.
@@ -642,3 +813,5 @@
   
 })();
 </script>
+</body>
+</html>
