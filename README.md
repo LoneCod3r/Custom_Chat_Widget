@@ -127,6 +127,31 @@ If this widget saved you time, a small transfer helps keep free projects like th
 |---|---|
 | **IBAN** | `BG75STSA93000029979791` |
 
-> Entirely optional — free to use, modify, and deploy without any obligation (see [LICENSE](LICENSE)). 
+> Entirely optional — free for personal and non-commercial use without any obligation (see [LICENSE](LICENSE)). 
 
 ⭐ Star the repo if it was useful!
+
+---
+
+## 📄 License
+
+See LICENSE.
+
+This software is provided free of charge for personal and non-commercial use.
+
+Commercial use is prohibited without prior written permission. See LICENSE for the full terms.
+
+## 👤 Author
+
+Made by Lone Coder<br>
+📧 Contact: [lonecoder@nsh.one](mailto:lonecoder@nsh.one)
+
+## ⭐ Like this widget?
+
+If you like my work and find this project useful, consider supporting me:
+
+### Support via Bank Transfer
+
+IBAN: BG75STSA93000029979791
+
+Thank you for your support.
