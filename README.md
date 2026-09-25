@@ -112,4 +112,6 @@ If this widget saved you time, a small transfer helps keep free projects like th
 |---|---|
 | **IBAN** | `BG75STSA93000029979791` |
 
-> Entirely optional — free to use, modify, and deploy without any obligation (see [LICENSE](LICENSE)). ⭐ Star the repo if it was useful!
+> Entirely optional — free to use, modify, and deploy without any obligation (see [LICENSE](LICENSE)). 
+
+⭐ Star the repo if it was useful!
