@@ -19,7 +19,7 @@ jobs:
       - run: node test/check-syntax.js
 
   smoke-test:
-    name: Browser smoke test (all 5 widget copies)
+    name: Browser smoke test (all 5 widget copies, Chromium)
     runs-on: ubuntu-latest
     needs: syntax-check
     steps:
@@ -30,3 +30,38 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node test/smoke.js
+
+  build-check:
+    name: Production build is reproducible from source
+    runs-on: ubuntu-latest
+    needs: syntax-check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node build.js
+      - name: Fail if the build produced any diff vs committed files
+        run: |
+          git diff --exit-code -- dist/chat-widget.min.js chat-widget.html chat-widget.min.html || \
+          (echo "::error::Generated files are out of date — run 'node build.js' and commit the result." && exit 1)
+
+  e2e:
+    name: Cross-browser E2E (Chromium, Firefox, WebKit, mobile)
+    runs-on: ubuntu-latest
+    needs: syntax-check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

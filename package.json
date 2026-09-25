@@ -4,9 +4,13 @@
   "version": "1.0.0",
   "description": "CI tooling only. The widget itself (chat-widget.js) has zero runtime dependencies.",
   "scripts": {
-    "test": "node test/smoke.js"
+    "test": "node test/smoke.js",
+    "test:syntax": "node test/check-syntax.js",
+    "test:e2e": "playwright test",
+    "build": "node build.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "puppeteer": "^25.12.0"
   }
 }

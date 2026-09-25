@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embed test — hostile host CSS</title>
+<style>
+  /* Simulates common global resets / framework preflight styles a real
+     third-party site might already have (Bootstrap/Tailwind-preflight-like
+     rules), applied BEFORE the widget's own <style> is injected. */
+  * { box-sizing: content-box; margin: 0; padding: 0; }
+  button { all: unset; cursor: default; font: inherit; }
+  div { border: 5px solid red; }
+  h4 { font-size: 40px; color: lime; text-transform: uppercase; }
+  input, textarea { border: 3px dashed orange; background: yellow; }
+  .vc-body { display: none; } /* a class-name collision a host page could plausibly have */
+</style>
+</head>
+<body>
+  <p>Host page content, styled aggressively on purpose.</p>
+  <div id="custom-chat-widget" data-formspree="https://formspree.io/f/xeaokykk"></div>
+  <script src="../../chat-widget.js" defer></script>
+</body>
+</html>
