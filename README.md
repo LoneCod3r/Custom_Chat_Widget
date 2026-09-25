@@ -148,10 +148,8 @@ Made by Lone Coder<br>
 
 ## ⭐ Like this widget?
 
-If you like my work and find this project useful, consider supporting me:
+If you like my work and find this project useful, consider supporting me.
 
-### Support via Bank Transfer
-
-IBAN: BG75STSA93000029979791
+You can support the project via the [Support the Creator](#-support-the-creator) section above.
 
 Thank you for your support.
