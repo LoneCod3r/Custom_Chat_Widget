@@ -127,8 +127,6 @@ If you like this widget or it saved you some time, you can support my work with 
 
 Your support helps me keep this project free and continue working on new projects.
 
-> Completely optional — the widget is free for personal and non-commercial use. See [LICENSE](https://github.com/LoneCod3r/Custom_Chat_Widget/blob/main/LICENSE) for details.
-
 ⭐ If you find this project useful, consider starring the repo.
 
 ---
