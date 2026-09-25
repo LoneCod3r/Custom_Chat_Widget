@@ -10,12 +10,20 @@ A self-hosted chat widget — no third-party service, no volume limits, no fees.
 
 <table>
   <tr>
+    <td align="center"><strong>Main menu (desktop)</strong></td>
+    <td align="center"><strong>FAQ</strong></td>
+  </tr>
+  <tr>
+    <td><img src="demo/screenshots/02-chat-widget-menu-desktop.png" width="380" alt="Chat widget open showing the main menu"></td>
+    <td><img src="demo/screenshots/03-chat-widget-faq.png" width="380" alt="Chat widget FAQ view with a question expanded"></td>
+  </tr>
+  <tr>
     <td align="center"><strong>Contact form (desktop)</strong></td>
     <td align="center"><strong>Chat widget (mobile)</strong></td>
   </tr>
   <tr>
     <td><img src="demo/screenshots/04-chat-widget-contact-form-desktop.png" width="380" alt="Chat widget showing the Talk to a Consultant contact form"></td>
-    <td><img src="demo/screenshots/05-chat-widget-mobile.png" width="380" alt="Chat widget open on a mobile viewport"></td>
+    <td><img src="demo/screenshots/06-chat-widget-mobile.png" width="380" alt="Chat widget open on a mobile viewport"></td>
   </tr>
 </table>
 
