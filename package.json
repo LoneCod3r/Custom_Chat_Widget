@@ -1,0 +1,12 @@
+{
+  "name": "custom-chat-widget",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CI tooling only. The widget itself (chat-widget.js) has zero runtime dependencies.",
+  "scripts": {
+    "test": "node test/smoke.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.11.1"
+  }
+}
