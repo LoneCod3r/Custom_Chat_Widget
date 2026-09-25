@@ -137,7 +137,7 @@ See [LICENSE](https://github.com/LoneCod3r/Custom_Chat_Widget/blob/main/LICENSE)
 
 This software is provided free of charge for personal and non-commercial use.
 
-Commercial use is prohibited without prior written permission. See [LICENSE](https://github.com/LoneCod3r/Custom_Chat_Widget/blob/main/LICENSE) for the full terms.
+Commercial use is prohibited without prior written permission.
 
 ## 👤 Author
 
