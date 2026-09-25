@@ -131,6 +131,7 @@
     + ".vc-body {\n"
     + "  flex: 1;\n"
     + "  overflow-y: auto;\n"
+    + "  overscroll-behavior: contain;\n"
     + "  padding: 18px;\n"
     + "  background: #0d1220;\n"
     + "  display: flex;\n"

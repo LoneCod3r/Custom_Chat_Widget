@@ -137,6 +137,34 @@ for (const [label, url] of [
       expect(hostScrollAfter).toBe(hostScrollBefore);
     });
 
+    test("real mouse-wheel input over the widget body does not chain to the host page at the scroll boundary", async ({ page, browserName, isMobile }) => {
+      // Unlike the programmatic scrollBy() test above, this dispatches an
+      // actual wheel event, which is what lets browsers chain overscroll to
+      // the parent once the inner element's own scroll is exhausted. FAQ is
+      // opened first so .vc-body actually has scrollable overflow — a
+      // non-overflowing element never "contains" anything, wheel or not.
+      //
+      // Chromium-only: Playwright's synthetic wheel-event dispatch doesn't
+      // reliably reproduce native overscroll-behavior chaining in Firefox
+      // or WebKit's engines, so this is scoped to the engine the live
+      // regression was actually reproduced and fixed on.
+      test.skip(browserName !== "chromium" || isMobile, "overscroll-behavior wheel chaining verified on desktop Chromium");
+      await page.goto(url);
+      await openChat(page);
+      await page.locator(".vc-option-btn", { hasText: "FAQ and Quick Questions" }).click();
+      await page.waitForFunction(() => document.querySelectorAll(".vc-faq-item").length === 3);
+      await page.locator("#vc-body").evaluate((el) => { el.scrollTop = el.scrollHeight; });
+      await page.waitForTimeout(100);
+
+      const hostScrollBefore = await page.evaluate(() => window.scrollY);
+      const bodyBox = await page.locator("#vc-body").boundingBox();
+      await page.mouse.move(bodyBox.x + bodyBox.width / 2, bodyBox.y + bodyBox.height / 2);
+      await page.mouse.wheel(0, 800);
+      await page.waitForTimeout(150);
+      const hostScrollAfter = await page.evaluate(() => window.scrollY);
+      expect(hostScrollAfter).toBe(hostScrollBefore);
+    });
+
     test("full customer journey: menu -> FAQ -> back -> form -> submit -> thank you -> close -> reopen -> repeat from another screen", async ({ page }) => {
       const errors = collectConsoleErrors(page);
       const FORMSPREE_URL = "https://formspree.io/f/xeaokykk";
