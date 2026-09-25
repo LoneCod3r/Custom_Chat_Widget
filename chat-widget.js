@@ -220,7 +220,7 @@
     + '    <button class="vc-header-close" id="vc-close" aria-label="Close chat">&#10005;</button>'
     + '  </div>'
     + '  <div class="vc-body" id="vc-body"></div>'
-    + '  <div class="vc-footer">Free and unlimited chat &middot; Powered by Apex Growth Partners</div>'
+    + '  <div class="vc-footer">Free and unlimited chat &middot; Created by Lone Coder</div>'
     + '</div>';
 
   /** Inject the widget's stylesheet into <head> once, no matter how many roots init. */
