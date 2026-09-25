@@ -23,7 +23,7 @@
     + "  width: 62px;\n"
     + "  height: 62px;\n"
     + "  border-radius: 50%;\n"
-    + "  background: #4f7fff;\n"
+    + "  background: #3d5fd1;\n"
     + "  box-shadow: 0 10px 28px rgba(79, 127, 255, 0.4);\n"
     + "  border: none;\n"
     + "  cursor: pointer;\n"
@@ -36,12 +36,12 @@
     + "  line-height: normal;\n"
     + "  margin: 0;\n"
     + "  padding: 0;\n"
-    + "  font: inherit;\n"
+    + "  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;\n"
     + "  -webkit-appearance: none;\n"
     + "  appearance: none;\n"
     + "}\n"
     + "#vc-bubble:hover {\n"
-    + "  background: #7aa0ff;\n"
+    + "  background: #33509e;\n"
     + "  transform: translateY(-2px) scale(1.04);\n"
     + "}\n"
     + "#vc-bubble:focus-visible, .vc-header-close:focus-visible, .vc-option-btn:focus-visible, .vc-faq-q:focus-visible, .vc-submit:focus-visible {\n"
@@ -145,7 +145,7 @@
     + "  animation: vc-pop 0.18s ease;\n"
     + "  margin: 0;\n"
     + "}\n"
-    + ".vc-msg.vc-user { align-self: flex-end; background: #4f7fff; color: #ffffff; border-color: #4f7fff; border-radius: 10px 10px 2px 10px; }\n"
+    + ".vc-msg.vc-user { align-self: flex-end; background: #3d5fd1; color: #ffffff; border-color: #3d5fd1; border-radius: 10px 10px 2px 10px; }\n"
     + "@keyframes vc-pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }\n"
     + ".vc-options { display: flex; flex-direction: column; gap: 8px; align-self: stretch; margin: 0; padding: 0; list-style: none; }\n"
     + ".vc-option-btn {\n"
@@ -166,7 +166,7 @@
     + "  -webkit-appearance: none;\n"
     + "  appearance: none;\n"
     + "}\n"
-    + ".vc-option-btn:hover { background: #4f7fff; border-color: #4f7fff; color: #ffffff; transform: translateY(-1px); }\n"
+    + ".vc-option-btn:hover { background: #3d5fd1; border-color: #3d5fd1; color: #ffffff; transform: translateY(-1px); }\n"
     + ".vc-faq-item { background: #182238; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; align-self: stretch; }\n"
     + ".vc-faq-q {\n"
     + "  position: relative;\n"
@@ -209,7 +209,7 @@
     + ".vc-form input:focus, .vc-form textarea:focus { outline: none; border-color: #4f7fff; }\n"
     + ".vc-form .vc-submit {\n"
     + "  margin-top: 4px;\n"
-    + "  background: #4f7fff;\n"
+    + "  background: #3d5fd1;\n"
     + "  color: #ffffff;\n"
     + "  border: none;\n"
     + "  padding: 12px;\n"
@@ -223,8 +223,8 @@
     + "  -webkit-appearance: none;\n"
     + "  appearance: none;\n"
     + "}\n"
-    + ".vc-form .vc-submit:hover { background: #7aa0ff; }\n"
-    + ".vc-form .vc-submit:disabled { opacity: 0.6; cursor: not-allowed; }\n"
+    + ".vc-form .vc-submit:hover { background: #33509e; }\n"
+    + ".vc-form .vc-submit:disabled, .vc-form .vc-submit[aria-disabled=\"true\"] { opacity: 0.6; cursor: not-allowed; }\n"
     + ".vc-form .vc-error { color: #ff8a8a; font-size: 0.78rem; display: none; }\n"
     + ".vc-thankyou { align-self: stretch; background: #182238; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 26px 18px; text-align: center; margin: 0; }\n"
     + ".vc-thankyou .vc-check {\n"
@@ -278,17 +278,34 @@
     + '  <div class="vc-footer">Free and unlimited chat &middot; Created by Lone Coder</div>'
     + '</div>';
 
-  /** Inject the widget's stylesheet into <head> once, no matter how many roots init. */
-  function injectStyles() {
+  /**
+   * Inject the widget's stylesheet into <head> once, no matter how many roots
+   * init. Accepts an optional CSP nonce (from a host page using a strict
+   * `style-src 'nonce-...'` policy instead of 'unsafe-inline') — without it,
+   * a page with that kind of CSP would silently block this <style> tag and
+   * the widget would render completely unstyled.
+   */
+  function injectStyles(nonce) {
     if (document.getElementById(STYLE_ID)) return;
     var style = document.createElement("style");
     style.id = STYLE_ID;
+    if (nonce) style.setAttribute("nonce", nonce);
     style.textContent = CSS_TEXT;
     document.head.appendChild(style);
   }
 
   /** Build the bubble + window DOM inside the given root element. */
   function mount(root) {
+    // Re-parent to a direct child of <body> if it isn't already one.
+    // #vc-bubble/#vc-window use `position: fixed`, which the CSS spec anchors
+    // to the *nearest ancestor with a transform/will-change/filter/perspective*
+    // instead of the true viewport, if one exists — a very common "GPU
+    // acceleration" pattern on real SPA root containers (React/Vue app divs,
+    // animation libraries). Moving the root out to <body> sidesteps that
+    // regardless of where the host page happens to place the embed <div>.
+    if (root.parentNode !== document.body) {
+      document.body.appendChild(root);
+    }
     root.innerHTML = MARKUP_TEXT;
     return {
       bubble: root.querySelector("#vc-bubble"),
@@ -475,7 +492,14 @@
         function resetSubmitState() {
           submitting = false;
           var submitBtn = form.querySelector(".vc-submit");
-          submitBtn.disabled = false;
+          // aria-disabled (not the native disabled attribute) during the
+          // in-flight request: a truly `disabled` button loses focusability,
+          // which — if the user submitted by pressing the button itself
+          // rather than Enter in a field — silently drops keyboard/screen-
+          // reader focus back to <body> the instant the request starts.
+          // Re-entry is already blocked by the `submitting` flag above, so
+          // aria-disabled costs nothing functionally while staying focusable.
+          submitBtn.removeAttribute("aria-disabled");
           submitBtn.textContent = "Send Message";
         }
 
@@ -500,7 +524,7 @@
           clearError();
           submitting = true;
           var submitBtn = form.querySelector(".vc-submit");
-          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-disabled", "true");
           submitBtn.textContent = "Sending...";
 
           var payload = {
@@ -545,6 +569,11 @@
               clearTimeout(timeoutId);
               if (res.ok) {
                 showThankYou();
+              } else if (res.status === 429) {
+                // Rate-limited — a distinct case from a validation error: the
+                // request itself was fine, retrying shortly will likely work.
+                setError("Too many messages sent recently. Please wait a moment and try again.");
+                resetSubmitState();
               } else if (res.status >= 400 && res.status < 500) {
                 setError("Your message could not be sent (invalid request). Please check the fields and try again.");
                 resetSubmitState();
@@ -613,6 +642,7 @@
       win.classList.add("vc-visible");
       bubble.classList.add("vc-open");
       bubble.setAttribute("aria-expanded", "true");
+      bubble.setAttribute("aria-label", "Close chat");
       win.addEventListener("keydown", onWindowKeydown);
       win.focus();
       if (!started) {
@@ -628,6 +658,7 @@
       win.classList.remove("vc-visible");
       bubble.classList.remove("vc-open");
       bubble.setAttribute("aria-expanded", "false");
+      bubble.setAttribute("aria-label", "Open chat");
       win.removeEventListener("keydown", onWindowKeydown);
       if (activeAbortController) {
         activeAbortController.abort();
@@ -654,7 +685,8 @@
     root.setAttribute("data-vc-initialized", "1");
 
     var formspreeAction = root.getAttribute("data-formspree") || "";
-    injectStyles();
+    var cspNonce = root.getAttribute("data-csp-nonce") || "";
+    injectStyles(cspNonce);
     var el = mount(root);
     initChat(el, formspreeAction);
   }

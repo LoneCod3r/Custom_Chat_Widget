@@ -38,6 +38,36 @@ test.describe("Formspree integration (mocked network)", () => {
     expect(errors).toEqual([]);
   });
 
+  test("submit button stays keyboard-focused during the in-flight request (aria-disabled, not disabled)", async ({ page }) => {
+    // Regression guard: a native `disabled` attribute strips focusability the
+    // instant it's set, which — if the user activated the button via keyboard
+    // rather than a mouse click on a different element — silently drops focus
+    // to <body>. Using aria-disabled instead keeps the button focusable while
+    // still communicating (and CSS-styling) the disabled state.
+    await goToContactForm(page);
+    await page.route(FORMSPREE_URL, async (route) => {
+      await new Promise((r) => setTimeout(r, 400));
+      await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
+    });
+    await fillValidForm(page);
+    await page.locator(".vc-submit").focus();
+    await page.locator(".vc-submit").press("Enter");
+    await expect(page.locator(".vc-submit")).toHaveAttribute("aria-disabled", "true");
+    await expect(page.locator(".vc-submit")).toBeFocused();
+    await expect(page.locator(".vc-thankyou")).toBeVisible({ timeout: 5000 });
+  });
+
+  test("Formspree 429 (rate limited) shows a distinct message from a validation error", async ({ page }) => {
+    await goToContactForm(page);
+    await page.route(FORMSPREE_URL, (route) => route.fulfill({ status: 429, body: "Too Many Requests" }));
+    await fillValidForm(page);
+    await page.click(".vc-submit");
+    await expect(page.locator("#vc-form-error")).toBeVisible();
+    await expect(page.locator("#vc-form-error")).toContainText("Too many messages");
+    await expect(page.locator("#vc-form-error")).not.toContainText("invalid request");
+    await expect(page.locator(".vc-submit")).toBeEnabled();
+  });
+
   test("Formspree 422 validation error shows a 4xx-specific message and re-enables the form", async ({ page }) => {
     await goToContactForm(page);
     await page.route(FORMSPREE_URL, (route) =>
@@ -48,6 +78,7 @@ test.describe("Formspree integration (mocked network)", () => {
     await expect(page.locator("#vc-form-error")).toBeVisible();
     await expect(page.locator("#vc-form-error")).toContainText("invalid request");
     await expect(page.locator(".vc-submit")).toBeEnabled();
+    await expect(page.locator(".vc-submit")).not.toHaveAttribute("aria-disabled", "true");
     await expect(page.locator(".vc-submit")).toHaveText("Send Message");
   });
 
@@ -59,6 +90,7 @@ test.describe("Formspree integration (mocked network)", () => {
     await expect(page.locator("#vc-form-error")).toBeVisible();
     await expect(page.locator("#vc-form-error")).toContainText("try again shortly");
     await expect(page.locator(".vc-submit")).toBeEnabled();
+    await expect(page.locator(".vc-submit")).not.toHaveAttribute("aria-disabled", "true");
   });
 
   test("network failure (connection aborted) is caught and shown as an error, not an uncaught exception", async ({ page }) => {
@@ -73,6 +105,7 @@ test.describe("Formspree integration (mocked network)", () => {
     await page.click(".vc-submit");
     await expect(page.locator("#vc-form-error")).toBeVisible();
     await expect(page.locator(".vc-submit")).toBeEnabled();
+    await expect(page.locator(".vc-submit")).not.toHaveAttribute("aria-disabled", "true");
     expect(pageErrors, "network failure must not surface as an uncaught JS error").toEqual([]);
   });
 

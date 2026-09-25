@@ -57,6 +57,11 @@ That's it — no build tools, no `npm install`, no other files to include. The s
 
 **Prefer hosting the JS as a separate file instead of a 3-line embed pointing to it directly?** Copy [`chat-widget.js`](chat-widget.js) (or the smaller [`dist/chat-widget.min.js`](dist/chat-widget.min.js)) into your project folder and update the `<script src="...">` path to match. Either way, the two-line `<div>` + `<script>` snippet above is all your HTML needs.
 
+**Site with a strict Content-Security-Policy?** The widget injects its own `<style>` tag at runtime, which a `style-src` policy without `'unsafe-inline'` will silently block (the widget still works, just renders unstyled). If your CSP uses a nonce instead, add it as `data-csp-nonce`:
+```html
+<div id="custom-chat-widget" data-formspree="..." data-csp-nonce="YOUR_NONCE_VALUE"></div>
+```
+
 ---
 
 ## Step 3 — Test it

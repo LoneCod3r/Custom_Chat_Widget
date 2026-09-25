@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embed test — transformed ancestor (position:fixed containing-block gotcha)</title>
+<style>
+  /* A very common "GPU acceleration" / animation-performance host-page hack.
+     Any ancestor with transform/will-change/filter/perspective creates a new
+     containing block, so a `position: fixed` descendant anchors to THAT
+     ancestor instead of the viewport — a well-known real-world gotcha for
+     embedded widgets, not a theoretical one. */
+  #app-wrapper {
+    transform: translateZ(0);
+    padding: 40px;
+    min-height: 2000px; /* force scrolling, to also confirm the widget doesn't scroll away */
+  }
+</style>
+</head>
+<body>
+  <div id="app-wrapper">
+    <p>Simulated SPA root wrapper with a transform on it (common perf pattern).</p>
+    <div id="custom-chat-widget" data-formspree="https://formspree.io/f/xeaokykk"></div>
+  </div>
+  <script src="../../chat-widget.js" defer></script>
+</body>
+</html>

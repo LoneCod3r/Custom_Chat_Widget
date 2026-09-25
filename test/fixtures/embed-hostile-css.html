@@ -9,8 +9,11 @@
      third-party site might already have (Bootstrap/Tailwind-preflight-like
      rules), applied BEFORE the widget's own <style> is injected. */
   * { box-sizing: content-box; margin: 0; padding: 0; }
+  html { line-height: 1.5; -webkit-text-size-adjust: 100%; }
+  body { font-family: Georgia, serif; line-height: inherit; }
+  button, input, textarea, select { font-family: inherit; font-size: 100%; line-height: inherit; }
   button { all: unset; cursor: default; font: inherit; }
-  div { border: 5px solid red; }
+  div { border: 5px solid red; position: relative; z-index: 1; }
   h4 { font-size: 40px; color: lime; text-transform: uppercase; }
   input, textarea { border: 3px dashed orange; background: yellow; }
   .vc-body { display: none; } /* a class-name collision a host page could plausibly have */

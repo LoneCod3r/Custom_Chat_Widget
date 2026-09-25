@@ -2,6 +2,17 @@ const { test, expect } = require("@playwright/test");
 const { fileUrl, collectConsoleErrors } = require("./helpers");
 
 test.describe("robustness / edge cases", () => {
+  test("data-csp-nonce is applied to the injected <style> tag (strict CSP support)", async ({ page }) => {
+    // A host page with a strict `style-src 'nonce-...'` CSP (rather than
+    // 'unsafe-inline') would otherwise silently block the injected stylesheet
+    // and render the widget completely unstyled, with no console error to
+    // explain why. data-csp-nonce lets that kind of host opt in.
+    await page.goto(fileUrl("test/fixtures/embed-csp-nonce.html"));
+    await page.waitForFunction(() => !!document.getElementById("vc-widget-styles"));
+    const nonce = await page.locator("#vc-widget-styles").getAttribute("nonce");
+    expect(nonce).toBe("test-nonce-abc123");
+  });
+
   test("loading the script twice does not create duplicate widgets or throw", async ({ page }) => {
     const errors = collectConsoleErrors(page);
     await page.goto(fileUrl("test/fixtures/embed-double-load.html"));

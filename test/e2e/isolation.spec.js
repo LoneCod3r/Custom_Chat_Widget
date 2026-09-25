@@ -48,6 +48,17 @@ test.describe("CSS isolation against a hostile host page", () => {
     const headerColor = await page.locator(".vc-header h4").evaluate((el) => getComputedStyle(el).color);
     expect(headerColor).not.toBe("rgb(0, 255, 0)");
 
+    // The host's `body { font-family: Georgia, serif }` + `button,input,textarea
+    // { font-family: inherit }` combo must not leak into the widget's own
+    // sans-serif UI (a common Bootstrap/Tailwind-preflight-style rule).
+    const bubbleFont = await page.locator("#vc-bubble").evaluate((el) => getComputedStyle(el).fontFamily);
+    expect(bubbleFont.toLowerCase()).not.toContain("georgia");
+
+    // The host's generic `div { position: relative; z-index: 1 }` must not pull
+    // our (near-max z-index) chat window underneath any host content.
+    const windowZIndex = await page.locator("#vc-window").evaluate((el) => parseInt(getComputedStyle(el).zIndex, 10));
+    expect(windowZIndex).toBeGreaterThan(1);
+
     expect(errors).toEqual([]);
   });
 
@@ -58,5 +69,34 @@ test.describe("CSS isolation against a hostile host page", () => {
     const hostParagraphColor = await page.locator("p").first().evaluate((el) => getComputedStyle(el).color);
     // Default black-ish text color, not our widget's blue/white palette.
     expect(hostParagraphColor).not.toBe("rgb(79, 127, 255)");
+  });
+
+  // Real-world gotcha, not theoretical: `position: fixed` anchors to the
+  // viewport UNLESS an ancestor has transform/will-change/filter/perspective,
+  // in which case it anchors to that ancestor instead. `transform:
+  // translateZ(0)` on a wrapper div is an extremely common "GPU acceleration"
+  // performance hack in real SPAs (React/Vue app roots, animation libraries).
+  test("bubble stays anchored to the true viewport even when its container has a transform (common SPA perf hack)", async ({ page }) => {
+    const errors = collectConsoleErrors(page);
+    await page.setViewportSize({ width: 1000, height: 800 });
+    await page.goto(fileUrl("test/fixtures/embed-transformed-ancestor.html"));
+
+    const rect = await page.locator("#vc-bubble").evaluate((el) => el.getBoundingClientRect());
+    // Bubble CSS: bottom:24px; right:24px; 62x62. If it were escaping to the
+    // transformed ancestor's containing block instead of the true viewport,
+    // these numbers would be wildly different (the wrapper has 40px padding
+    // and 2000px min-height, pushing a mis-anchored element far off-screen).
+    expect(rect.right).toBeGreaterThan(1000 - 24 - 62 - 2);
+    expect(rect.right).toBeLessThan(1000 - 24 + 2);
+    expect(rect.bottom).toBeGreaterThan(800 - 24 - 62 - 2);
+    expect(rect.bottom).toBeLessThan(800 - 24 + 2);
+
+    // Scroll the (very tall) host page and confirm the bubble stays fixed
+    // relative to the viewport rather than scrolling away with the content.
+    await page.evaluate(() => window.scrollTo(0, 500));
+    const rectAfterScroll = await page.locator("#vc-bubble").evaluate((el) => el.getBoundingClientRect());
+    expect(Math.abs(rectAfterScroll.bottom - rect.bottom)).toBeLessThan(2);
+
+    expect(errors).toEqual([]);
   });
 });

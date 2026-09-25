@@ -46,7 +46,7 @@ function extractFunctionBody(src, signature) {
 
 // CSS_TEXT and MARKUP_TEXT: string-concatenation assignments, extract as-is
 const cssAssignment = extractBetween(SRC, "var CSS_TEXT = ", "\n\n  var MARKUP_TEXT");
-const markupAssignment = extractBetween(SRC, "var MARKUP_TEXT = ", "\n\n  /** Inject");
+const markupAssignment = extractBetween(SRC, "var MARKUP_TEXT = ", "\n\n  /**");
 
 // Evaluate the concatenation strings to get real CSS/HTML text
 const CSS_TEXT = new Function("return (" + cssAssignment.replace(/;\s*$/, "") + ");")();
