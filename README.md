@@ -119,37 +119,29 @@ Everything is plain text inside `chat-widget.js` — no build step, just edit an
 
 ## ☕ Support the Creator
 
-[![Support via Bank Transfer](https://img.shields.io/badge/Support-Bank%20Transfer-4f7fff?style=for-the-badge&logo=buymeacoffee&logoColor=white)](#)
+If you like this widget or it saved you some time, you can support my work with a small bank transfer.
 
-If this widget saved you time, a small transfer helps keep free projects like this maintained.
+| **🏦 Bank Transfer** |                          |
+| -------------------- | ------------------------ |
+| **IBAN**             | `BG75STSA93000029979791` |
 
-| 🏦 Bank Transfer |  |
-|---|---|
-| **IBAN** | `BG75STSA93000029979791` |
+Your support helps me keep this project free and continue working on new projects.
 
-> Entirely optional — free for personal and non-commercial use without any obligation (see [LICENSE](LICENSE)). 
+> Completely optional — the widget is free for personal and non-commercial use. See [LICENSE](https://github.com/LoneCod3r/Custom_Chat_Widget/blob/main/LICENSE) for details.
 
-⭐ Star the repo if it was useful!
+⭐ If you find this project useful, consider starring the repo.
 
 ---
 
 ## 📄 License
 
-See LICENSE.
+See [LICENSE](https://github.com/LoneCod3r/Custom_Chat_Widget/blob/main/LICENSE).
 
 This software is provided free of charge for personal and non-commercial use.
 
-Commercial use is prohibited without prior written permission. See LICENSE for the full terms.
+Commercial use is prohibited without prior written permission. See [LICENSE](https://github.com/LoneCod3r/Custom_Chat_Widget/blob/main/LICENSE) for the full terms.
 
 ## 👤 Author
 
 Made by Lone Coder<br>
 📧 Contact: [lonecoder@nsh.one](mailto:lonecoder@nsh.one)
-
-## ⭐ Like this widget?
-
-If you like my work and find this project useful, consider supporting me.
-
-You can support the project via the [Support the Creator](#-support-the-creator) section above.
-
-Thank you for your support.
