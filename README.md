@@ -8,6 +8,8 @@ A self-hosted chat widget — no third-party service, no volume limits, no fees.
 
 ## Demo
 
+**[Try the live demo →](https://lonecod3r.github.io/Custom_Chat_Widget/demo/)** — a sample business page with the widget running for real, hosted on GitHub Pages.
+
 <table>
   <tr>
     <td align="center"><strong>Main menu (desktop)</strong></td>
