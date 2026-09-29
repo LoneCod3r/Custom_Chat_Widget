@@ -121,9 +121,13 @@ Everything is plain text inside `chat-widget.js` — no build step, just edit an
 
 If you like this widget or it saved you some time, you can support my work with a small bank transfer.
 
-**🏦 Bank Transfer — IBAN**
+<table><tr><td><b>🏦 Bank Transfer — IBAN</b></td><td>
 
-`BG75STSA93000029979791`
+```text
+BG75STSA93000029979791
+```
+
+</td></tr></table>
 
 <img src="docs/iban-qr.png" alt="QR code containing the IBAN BG75STSA93000029979791" width="180"><br>
 **Scan to copy IBAN**
