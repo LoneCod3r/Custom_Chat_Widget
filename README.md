@@ -148,5 +148,5 @@ Commercial use is prohibited without prior written permission.
 
 ## 👤 Author
 
-Made by Lone Coder<br>
+Made by [Lone Coder](https://lonecoder.nsh.one/)<br>
 📧 Contact: [lonecoder@nsh.one](mailto:lonecoder@nsh.one)
